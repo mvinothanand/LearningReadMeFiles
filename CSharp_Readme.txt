@@ -1,6 +1,6 @@
 Important Shortcuts:
 Ctrl + F5 - Run without debug
-F5 - Run with debug
+F5 - Run with debug OR while a debug in progress, continue till the next breakpoint
 F9 - Set Break Point
 F10 - Step Over
 F11 - Step in (to a function)
