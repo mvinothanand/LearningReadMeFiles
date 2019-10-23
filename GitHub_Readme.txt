@@ -127,3 +127,11 @@ Ignore all the modified files locally
 -------------------------------------------------------------------------------
 git stash
 
+-------------------------------------------------------------------------------
+Refresh the local copy with the remote master
+- This would show items that were chaned locally. 
+- Those have to be stashed or committed before pull.
+-------------------------------------------------------------------------------
+git pull origin master
+
+
