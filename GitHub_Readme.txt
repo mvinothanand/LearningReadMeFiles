@@ -117,6 +117,9 @@ git log -p -2
 
 Check https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History for more useful options.
 
+git log -3
+	--> View the most recent 3 commits with the commit remarks
+
 -------------------------------------------------------------------------------
 Adding a remote
 -------------------------------------------------------------------------------
@@ -143,5 +146,29 @@ git checkout -b <new branch name>
 Push the committed changes to the remote
 -------------------------------------------------------------------------------
 git push
+
+-------------------------------------------------------------------------------
+Fetch
+	- This will fetch all the changes in the remote branch
+	- this doesn't modify the local files.
+	- useful to see if there any differences between the local and remote
+-------------------------------------------------------------------------------
+git fetch origin <branch name>
+
+-------------------------------------------------------------------------------
+See all the branches
+-------------------------------------------------------------------------------
+git branch --all
+
+-------------------------------------------------------------------------------
+See all the branches along with the remote tracking branches
+-------------------------------------------------------------------------------
+git remote show origin
+
+
+
+
+
+
 
 
