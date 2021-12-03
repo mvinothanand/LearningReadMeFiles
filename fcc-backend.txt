@@ -1,0 +1,159 @@
+FCC - Back End Development
+==========================
+npm - node package manager
+	- a command line tool that helps to install, create and share javascript programs written to work with Node.js
+
+package.json
+	- is the place where project information is maintained
+	- "name" and "version" are the only required information
+	- however it is a good practice to add additional information about the project for clarity and better maintainence in future.
+	- Some of the pieces of information that are good to add to a package.json are:
+		- "author" 
+			- can be a string with just the name of the author or an object with more information about the author like contact details.
+		- "description"
+			- a string with useful information about the project.
+		- "keywords"
+			- an array of key words that are related to the project
+		- "license"
+			- Specify the license type like MIT, BSD etc.
+			- Good practice to specify this explicitly.
+		- "version"
+			- string to specify the current version of the project
+		- "dependencies"
+			- An object containing the information on external packages that are required by the project.
+			- Example:
+			{
+				"<package-name>": "<version>"
+			}
+			- Semantic Versioning (SemVer)
+				- An industry standard for project vesioning
+				- It has three logical constituents => "MAJOR.MINOR.PATCH"
+					- MAJOR: When there are changes that are not backward compatible
+					- MINOR: When there are new functionality introduced, but backward compatible
+					- PATCH: When there are bug fixes that are backward compatible
+				- Use a tilde "~" in front of the version to always take the latest PATCH for the specified MAJOR and MINOR version
+					- For example, "~1.3.2" will ensure the latest PATCH version "1.3.x" is installed.
+				- use a caret "^" symbol in front to always take the latest MINOR and PATCH version of the dependency.				
+					- For example, "^1.3.2" will ensure to install the latest "1.x.x" version of the package.
+#npm install
+	- installs the node_modules folder which will contain all the dependencies needed for the project
+#npm start
+	- Triggers the start script mentioned in the package.json
+	- Usually used to bring up the app
+
+express
+	** REfer to the git project fcc-learning-express for examples **
+	- importing express	
+		var express = require('express')
+	- routing
+		app.METHOD(ROUTE, HANDLER)
+			- METHOD --> HTTP method in lower case
+			- ROUTE --> Path relative to the current directory
+			- HANDLER --> Function that handles the routing
+			example: app.get("/",function(req, res){
+				res.send("Hello Express") // serves a string
+			})
+		if there are multiple http methods to be handled for the same path they can be chained as below 
+			app.route(<PATH>).get(<GET method handler>).post(POST method handler)
+	- Serve a string
+		res.send("Hello Express")
+			sets appropriate headers requried for the browser to understand
+	- Serve a file
+		res.sendFile(<path>)
+			__dirname is a node global variable which holds the absolute path of the project home directory.
+			this method reads the file and sets appropriate headers stating that a file is being served
+	- Serve a json
+		res.json(<json object>)
+			this method converts the json object to a string, sets the appropriate headers and sends back
+			
+	- Middleware
+		Middleware are functions that intercept route handlers adding some kind of information
+			These functions execute some code that can have side effects on the app, 
+			and usually add information to the request or response objects. 
+			They can also end the cycle by sending a response when some condition is met. 
+			If they don’t send the response when they are done, they start the execution of the next function in the stack. This triggers calling the 3rd argument, next()
+		They take three inputs:
+			request object
+			response object
+			function to be called next
+		Example: Below is a middleware function that logs every request received.
+			app.use(function(req, res, next){
+			  var method = req.method;
+			  var path = req.path;
+			  var ip = req.ip;
+
+			  console.log(`${method} ${path} - ${ip}`);
+			  next() // if next is not invoked the request would be struck
+			})
+		Middlewares are to be mounted for using them.
+			app.use(<path>, <middleware function>)
+				the <path> is optional. if not mentioned, the middleware were will be invoked for all routes.
+				app.use will invoke the middleware for all type of HTTP methods.
+			for setting a middleware for only a specific http method, use app.GET(<middleware func>) app.POST(<middleware func>) etc.
+		Chaining
+			Middlewares can also be chained with a route handler as below
+			app.get(<ROUTE>, <MIDDLEWARE FUNCTION>, <ROUTE HANDLER>)
+			validations and modifications to requests can be added to the middleware functions.
+			route handler will be invoked only if the middleware function calls the next.
+	- Exposing static assets
+		express.static(<absolute static files path>)
+		express.static is a middleware that helps to serve static contents
+		example:
+			let assets = __dirname + "/public"
+			app.use("/public",express.static(assets))
+		
+	- .env
+		Environment variables can be configured in a file ".env" and placed in the root path of the directory
+		Global Parameters that may be used to change the app behaviour, api keys and any other secrets can be stored here
+		"dotenv" package is required to export the variables in .env file
+			npm install dotenv
+			add this to the code to import the package and load the environment variables.
+				require("dotenv").config()
+		the variables are to be set in the .env file in the format <VARIABLE_NAME>=<variable value>
+			there should not be a space around the = sign
+			convention is to keep the variable name in upper case
+			surround the variable value with quotes if there is a space in the value
+		the variables can be accessed in the code as process.env.<VARIABLE_NAME>
+	
+	- route parameters
+		parameters can be sent as part of the routing url from client and handled by the route handlers
+		parameters have to be specified with a ":" in front of the parameter name
+			'/movie/:movieID/year/:yearOfRelease'
+		the route parameters will be available in the req.params as an object.
+			{"movieID" : "ABCDEF",
+				"yearOfRelease": 2003
+			}
+		Example:
+			app.get("/:word/echo", function (req, res) {
+				console.log("input word" + req.params.word)
+				res.json({ echo: req.params.word })
+			})
+	
+	- query parameters
+		another way to send values from client to backend
+		the parameters are to be sent as name=value pairs separated from the route path by "?" and each other by an "&"
+			Example:
+				http://localhost:3000/name?first=vinoth&last=masilamani
+			app.get("/name", function (req, res) {
+			  console.log(req.query)
+
+			  var firstName = req.query.first || ""
+			  var lastName = req.query.last || ""
+
+			  var name = firstName + " " + lastName
+			  res.json({ name: name })
+			})
+		the query parameters will be available in the req.query object.
+		
+	- Handling POST method
+		parameters for POST can't be sent in the URL as route or query params.
+		they will be part of the content body
+		HTML forms send the data in this format usually
+		they can also be made to send data in json format or multi-part format
+		body-parser
+			this package is used to parse the query params in the body of a POST request.
+			it has middleware to help chaining and parsing
+			a middleware to parse urlencoded query params can be created as follows:
+				const bpUrlEncoded = bodyParser.urlencoded({extended: false});
+			body-parser works with other http methods as well
+		Once the body-parser method is mounted to the appropriate route, they parse the body and the details will be available in req.body
