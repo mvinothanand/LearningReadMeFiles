@@ -6,7 +6,7 @@ Configuring Git
 -------------------------------------------------------------------------------
 git config
 	> --global user.name mvinothanad --> This sets the user name against which the commits are recorded
-	> --global user.email vinoth.anand@gmail.com --> this sets the email against which the commits are recorded
+	> --global user.email abc@gmail.com --> this sets the email against which the commits are recorded
 	> --list --> Lists all config variables and their values.
 	> --<key> --> to find out the value set for a specified key.
 
