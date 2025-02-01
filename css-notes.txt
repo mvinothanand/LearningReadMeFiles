@@ -1,0 +1,26 @@
+CSS Selector:
+id selector - prefix # with the id
+class - prefix . with the class name
+
+List of selectors:
+usage: (selector1, selector2, ...)
+example: (#id1, #id2)
+
+
+CSS Properties:
+background-color
+color - sets the font color
+padding
+padding-right
+max-width
+max-height
+margin
+margin-top
+margin-bottom
+margin-left
+margin-right
+border: 1px solid #0a0a23;
+display: none - removes the element
+cursor: pointer
+background-image: linear-gradient(#fecc4c, #ffac33)
+

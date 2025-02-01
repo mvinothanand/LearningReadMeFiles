@@ -1,9 +1,626 @@
-Udemy Course
-	The Modern Javascript Bootcamp Course (2020)
-		Instructors
-			Colt Steele
-			Stephen Girder
-CSS
-	CSS Libraries
-		Bulma CSS
+Datatypes:
+==========
+Primitive Datatypes:
+they are immutable.
+undefined
+null
+boolean
+number
+BigInt
+string
+symbol
+
+
+'String' datatype is immutable. Changing a character by an index is not possible.
+
+'Arrays' are mutable. A value in the array can be changed by refering to the index.
+
+Arrays
+======
+find the length of an array using '.length'
+example: last_array_element = array[array.length - 1]
+
+array.push('new value') - Adds 'new value' to the end of array.
+It also returns the new length of the array.
+
+array.pop() - Removes the 'last' element from the array and returns the element.
+
+array.unshift('new value') - add 'new value' to the beginning of the array.
+returns the updated length of the array.
+
+array.shift() - removes the 'first' element of the array and returns the element.
+
+array.includes() - check if the array contains the input value and return true/false
+
+Array.from(<iterables like NodeList>)
+  convert an iterable to array
+
+spread:
+  create a new array by copying one or more arrays
+  const newArray = [...array1, ...array2]
+
+<array>.map()
+  map/transform elements in an array to new array with the transformed values
+  const newArray = oldArray.map(oldItem => oldItem * 2);
+
+join()
+  concatenate all elements of an array optionally with a separator
+  <array>.join(<separator>)
+  default separator is comma
+
+sort()
+  converts elements of an array to strings and sorts them
+  sorting is based on UTF-16 encoding of the values
+  sorts them in place - the source array gets mutated
+  accepts a compare callback function to define the sort order
+    the call back function, gets two inputs
+    it has to return a -ve value if the 1st item is to be sorted before the 2nd
+    it has to return a +ve value otherwise
+    it has to return 0 if the items shall remain in same order
+
+toSorted()
+  same as sort() method except that it creates a new array
+  the source array remain intact
+
+find()
+  accepts a callback fn with find logic 
+  the first match is returned
+  if not match returns undefined
+  example:
+    const numberGreaterThan20 = numbers.find(num => num > 20)
+
+
+indexOf()
+  returns the index of the first match 
+  -1 if not found
+
+
+findIndex(<callback function>)
+  returns the index of the first match if the callback function returns true
+  else returns -1
+
+
+forEach()
+  loop through each element and perform a function on them
+  numbers.forEach( num => { console.log(num)})
+  parameters available to the callback function:
+    - the current element of the array that is in iteration
+    - index of the element
+    - the array on which forEach was called upon
+
+filter()
+  retain only the elements that match a logic
+  const numbersLessThanFive = numbers.filter(num => num < 5)
+  returns a new array
+
+reverse()
+  reverses the array
+
+splice(<starting index>, <number of items to remove>, [<replace with>])
+  remove or replace elements at a specified index
+  returns the removed elements
+  example:
+  const fruits = ["mango", "apple", "fig", "orange"]
+  fruits.splice(1, 2, "banana")
+    // fruits is now ["mango", "banana", "orange"]
+    // returns ["apple", "fig"]
+
+
+some()
+  accepts a callback function to run a test with/on each of the array element.
+  returns true even of one test (or element) returns true
+  example:  
+    const arr = ["A", "b", "C"];
+    arr.some(letter => letter === letter.toUpperCase());
+
+
+reduce()
+  Two inputs:
+    1. callback function with two parameters atleast:
+      1. accumulator
+        initial value is the first element
+        to start with a different initial accumulator, pass it as 2nd input.
+      2. current element
+    2. initial value for accumulator
+
+
+Loops
+=====
+A simple for loop:
+for (let i = 0; i < 10; i = i + 1) {
+	console.log(i);
+}
+
+for...of loop:
+for (const value of iterable) {
+	console.log(value);
+}
+
+while loop:
+while (condition) {
+  logic;
+}
+
+
+Scope
+=====
+Global Scope
+- variables that are declared outside any block of code in the program.
+- they are available in all the blocks of code in the program.
+
+'let' keyword for variable declaration.
+- to initialize a variable.
+- value of the variable 'can be' reassigned to a different value later.
+- variable can be Uninitialized
+
+Uninitialized variable will have 'undefined' value. 'undefined' is a primitive datatype in JS.
+
+'const' keyword for variable declaration.
+- variable cannot remain uninitialized.
+- variable cannot be reassigned.
 		
+
+Comments
+========
+Single line comment - '//'
+Multi line comment - '/* ..... */'
+
+
+Conditionals
+============
+Falsy value - a value that evaluates to a boolean 'false'
+false, undefined, "", '', NaN, 0, -0, 0n, null are all falsy values in JS.
+
+if.. else syntax:
+if (condition1) {
+  // code to run if condition1 is true
+} else if (condition2) {
+  // code to run if condition2 is true
+} else if (condition3) {
+  // code to run if condition3 is true
+} else {
+  // this code will run 
+  // if the first and second conditions are false
+}
+
+ternary if:
+condition ? expressionIfTrue : expressionIfFalse
+
+Logical OR operator: ||
+Logical AND operator: &&
+
+Strict Equality operator '===':
+In JS, "0" == 0 is true eventhough they are of different datatypes.
+Hence, for strict equality evaluation considering datatypes as well,
+use the '===' operator.
+
+Strict inequality operator '!=='
+
+Switch:
+  switch (dayOfWeek) {
+    case 1:
+      console.log("It's Monday!");
+      break; // if not present, will continue to execute subsequent matched cases.
+    case 2:
+      console.log("It's Tuesday!");
+      break;
+    // ...cases for other workdays
+    default:
+      console.log("It's the weekend!");
+  }
+
+
+Document Object Model (DOM)
+===========================
+document object:
+- access the HTML through the document object
+
+querySelector():
+method on the document object
+accepts a CSS selector and returns the first element matching the selector
+example: 
+  let h1 = document.querySelector("h1")
+  let inputContainer = document.querySelector("#elementId .className")
+
+
+querySelectorAll()
+  fetches all the matching elements
+  returns a NodeList - array-like object
+  selects all elements in the parent element if no selector is passed
+
+
+getElementById():
+get a HTML element object by ID
+let mainHeader = document.getElementById("mainTitle")
+
+
+<"document"/parent element>.getElementsByClassName(<class name>)
+  returns a HTMLCollection
+    HTMLCollection is an array like object
+
+Assign a function for onclick using dot notation:
+const button1 = document.querySelector("#button1");
+button1.onclick = myfunction;
+
+Event Listener:
+const button1 = document.querySelector("#button1");
+button1.addEventListener('click',doOnClick);
+form1.addEventListener('submit',doOnSubmit);
+dropdown1.addEventListener('change', (e) => {})
+  'e' represents information about the event
+   e.target.value - will have the value of the element
+
+Prevent Default action of an event:
+  <event>.preventDefault()
+
+
+innerText property:
+const h1 = document.querySelector("h1")
+h1.innerText = "Hello World!"
+ignores HTML tags and any styling content in the text.
+
+innerHTML property:
+renders any HTML/CSS text in the text as HTML/CSS.
+
+textContent:
+  access text content of a HTML element
+  <HTML Element>.textContent
+
+insertAdjacentHTML(<position>, <html content as text>):
+  inserts the given HTML content at a specified position.
+  values for position:
+    'beforebegin' - before the element if there is a parent element
+    'afterbegin' - within the element, before its first child
+    'beforeend' - append the html content as the last child
+    'afterend' - just after the element, if there is a parent element
+
+
+classList:
+  property that has the list of all the classes assigned to the element
+  remove()
+    remove an existing class from the element
+    example: <HTMLElement>.classList.remove('hide');
+  add()
+    add a new class to the element
+    <HTMLElement>.classList.add('hide')
+  toggle()
+    add or remove as per the presence or absence of the class
+
+style property:
+  control the inline styling of the elements
+  example: <HTMLElement>.style.display = <'block' or 'none'>
+
+Remove a HTML attribute:
+  <HTML Element>.removeAttribute(<attribute name>)
+
+Set a HTML attribute:
+  <HTML Element>.setAttribute(<attribute name>, <value>)
+
+Create an element:
+  document.createElement(<element type>)
+    document.createElement("button")
+
+Create text node:
+  to assign text to an element created via createElement
+  document.createTextNode("Reset")
+
+Assign id to an element:
+  <HTML Element>.id = "reset"
+
+Assign an aria-label to an element:
+  <HTML Element>.ariaLabel = "Rest playlist"
+
+append a node or child element:
+  <document or HTML element>.appendChild()
+
+interaction with <dialog> element:
+  showModal()
+    open a dialog element as modal
+  show()
+    open a dialog element as non-modal
+  close()
+    close an open dialog element
+
+parentElement
+  refers the parentElement of an element
+
+events:
+  whenever an event is triggered an event object is created.
+    type
+    target
+    key
+      key that was pressed
+      useful for key press events
+  click
+  change
+  keydown - called whenever a key is pressed
+
+Objects
+=======
+Accessing object's properties:
+dot notation 
+-> example: cat.name
+square brackets 
+-> must when the property name has a space in it.
+-> example: cat."number of legs"
+
+Object.freeze(<object>)
+  freeze an object and prevent any changes
+
+Destructuring:
+const developerObj = {
+  name: "Jessica Wilkins",
+  isDeveloper: true
+};
+
+// Object destructuring
+const { name, isDeveloper } = developerObj;
+
+// Get all the values of an object in an array
+  Object.values(<object>)
+
+// Get all the keys of an object in an array
+  Object.keys(<object>)
+
+
+Math Functions
+==============
+Math.random() - generates a random number from 0 (inclusive) to 1(exclusive)
+Math.floor() - rounds a given number down to its nearest integer
+Math.abs()
+Math.min(<a series of numbers>)
+Math.max(<a series of numbers>)
+Math.pow(base, exponent)
+  example, to get the sq root of 4:
+    Math.pow(4, 0.5)
+Math.sqrt(<number>)
+
+
+Regex
+=====
+regex pattern string is enclosed in backward slashes
+const regex = /hello/
+
+Use a backslash to escape characters with special meaning in regex
+Example: const regex = /\+-/
+  here the backslash escapes the special meaning '+' has in the regex context.
+
+character classes:
+enclosed in square brackets
+example: const regex = /[helo]/ 
+  will match the characters h, e, l, o
+[0-9]
+  matches numbers from 0 to 9
+characters with special meaning in regex context doesn't need to be escaped.
+  example: const regex = /[+-\s]/
+    this will match for either +, - or a space.
+
+shorthand character classes:
+  certain characters are represented by symbols preceded with a backslash
+  '\s'
+    matches whitespaces, tabs and next lines
+    example: const regex = /\+-\s/
+  '\d'
+    match any digit
+    same as [0-9]
+  '^'
+    start to match from beginning of the string
+  '$' 
+    match till the end of string
+
+flags:
+  these are added after the regex pattern to alter the applicability
+  'g' - global
+    find all the matches
+    example: const regex = /helo/g
+  'i' - case insensitive
+    makes the pattern case insensitive
+
+modifiers/quantifiers:
+  '+' - matches the character for one or more occurence
+     /a+/ matches one or more consecutive occurences of 'a'.
+  '?' - matches zero or one occurence of the preceding expression
+    /colou?r/ - matches both color or colour
+  '*' - matches zero or more occurence
+
+alternate sequence (|):
+  match this or that
+  example:
+    yesOrNoRegex = /yes|no/;
+
+<regex>.test(<str>)
+  - returns a boolean value
+
+capture group:
+  define a part of the regex expression that will be saved for later reference.
+  enclose it with parantheses
+  example:
+    /h(i|ey) friends/
+      matches hi friends or hey friends
+      captures (i|ey) in a group
+
+non-capturing group:
+  define a group that need not be saved.
+  starting parantheses should follow with a ?:
+  example:
+    /h(?:i|ey) friends/
+
+
+Regex Examples:
+const regex = /[^a-z|^0-9]/ig
+  find all non alpha numeric characters with case insensitivity
+text.replace(/[^A-Za-z0-9\-\s]/g, '')
+  remove anything other alphabets, numbers, '-' and ' '
+Check fcc-regex-example-spam-filter in jsTryOuts repo
+
+
+Strings
+=======
+Escape sequence to add a newline:
+console.log("line one" + "\n" + "line two");
+
+Escape double quotes with backslash:
+text.innerText = "You are in the town square. You see a sign that says \"Store\".";
+
+template literals:
+  console.log(`My name is ${name} .`)
+
+Number('number as string')
+  convert a number value as text to number
+  returns NaN if the input is not a number
+
+replace()
+  syntax: replace(<char, str or regex>, <replace with>)
+  example: "hello".replace(/l/g, '1')
+    replaces both 'l's with '1'
+  returns a new string with the replaced characters
+
+repeat(n) - creates a new string with the string object on which the method is applied repeated 'n' times.  
+
+match()
+  "string".match(<char, str or regex>)
+  returns an array with match results
+    or null when there is no match
+  example: '1e3'.match(/\d+e\d+/i)
+    result:
+      [ '1e3', index: 0, input: '1e3', groups: undefined ]
+
+toLowerCase()
+toUpperCase()
+
+split()
+  <string>.split()
+    no input - returns an array with the entire string as the only element
+    "" - splits every character and puts them in an array
+    accepts a regex also to define a separator
+
+String(<input>)
+  - converts the input reliably to a string
+  - null is converted to "null"
+  - undefined is converted to "undefined"
+
+Audio:
+=====
+Web Audio API
+  const audio = new Audio(); // creates a new audio object
+  audio.src = <source url of the audio>
+  audio.title = <title of the audio>
+  audio.currentTime
+    set to 0 to play from beginning
+  audio.play()
+    plays an mp3 file
+  audio.pause()
+    pause the song
+
+
+Arrow functions:
+============================
+anonymous functions
+  () => {}
+named arrow function
+  const arrowFunction = () => { console.log('Hi!') }
+arrow function with one parameter
+  paranthesis is optional
+  const arrowFunction = name => { console.log(`hi ${name}!`)}
+implicit return 
+  when there is just one return statement, 
+    return keyword and curly braces can be omitted
+    const arrowFunction = (num1, num2) => num1 * num2;
+
+default parameters:
+  const printHello = (name = "Anonymous") => {
+    console.log(`hi ${name}`);
+  }
+
+chaining
+========
+  invoking a series of functions
+    <array>.map().join()
+  optional chaining
+    to avoid errors in case of null/undefined values
+      examples:
+        <array>.filter()?.join()
+        userData?.hobby
+  example:
+    const exampleSentence = "selur pmaCedoCeerf".split("").reverse().join("");
+
+
+Date Object:
+===========
+The Date() constructor function returns current date and time as a string
+  const currentDate = new Date()
+get day of the month
+  currentDate.getDate()
+getMonth()
+  0 is Jan; 11 is Dec
+getFullYear()
+  returns the year of the date 
+getHours()
+  returns the hour component of the date
+  0 - midnight; 23 - 11 pm
+getMinutes()
+  0 to 59
+Date.now()
+  returns the time elapsed since Jan 1 1970 00:00:00 UTC in milliseconds
+
+
+Local Storage:
+=============
+Web storage feature for persisting data in key:value pairs
+value can be any of Javascript datatypes
+localStorage has methods to handle local storage
+setItem(<key>, <value>)
+  the value should be in string format. else it is stored as an object
+  use JSON.stringify() to convert an object as string
+getItem(<key>)
+  if the value stored was stringified, it has to be parsed with JSON.parse()
+    to retrieve as object.
+removeItem() - remove one item
+clear() - clears all of the local storage
+The local storage can be viewed in:
+  browser console -> application tab -> local storage -> domain
+
+
+this keyword:
+=============
+it refers to the current context
+in the below cases, it refers to the respective buttons
+  <button type="button" class="btn" onclick="editTask(this)">Edit</button>
+  <button type="button" class="btn" onclick="deleteTask(this)">Delete</button>
+
+JSON:
+JSON.stringify()
+  JSON or Javascript object to a string
+JSON.parse()
+  converts a JSON/Javascript object in string format back to JSON
+
+functions:
+  parseInt(<number string>)
+    converts a string to number
+    if not a number returns NaN
+  isNaN(<input string>)
+    true if the input string evaluates to NaN
+  alert(<message>)
+    is a method on the window object
+
+Operators:
+=========
+Arithmetic:
++
+-
+*
+/
+% (remainder operator)
+** to the power of
+
+
+setTimeOut(<callback function>, <delay time in milliseconds>)
+  - the callback function is invoked after a delay as specified
+  - asyncronous - doesn't stop the execution of subsequent code
+  - useful to execute non-blocking code
+
+
+Set:
+---
+  a data structure that stores only unique values
+  const newSet = new Set()

@@ -1,0 +1,13 @@
+BUBBLE SORT
+-----------
+Works by comparing adjacent values in the list/array and swaping the larger value towards one direction.
+Repeat as many times as the number of elements in the list/array.
+
+SELECTION SORT
+--------------
+  find the smallest value
+  swap the first element with the smallest value
+  repeat until all elements are sorted.
+
+INSERTION SORT
+--------------

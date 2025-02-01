@@ -1,0 +1,73 @@
+Doctype declaration:
+<!DOCTYPE html/>
+
+Language declaration:
+<html lang="en-US">
+</html>
+
+Charset:
+<meta charset="utf-8"/>
+
+Link a stylesheet:
+<link href="style.css" rel="stylesheet"/>
+
+Adding JS code within a html document:
+<script>
+  // Js code goes here
+</script>
+to access the document object and elements, keep the <script> tag just before the closing tag of </body>
+
+Linking an external script to a html document:
+<script src="./script.js"></script>
+
+**********************************************************************
+HTML FORMS
+**********************************************************************
+form 
+<form> </form>
+
+label
+<label for="id of the element labelled">Label Text</label>
+
+input field:
+self-closing
+attributes:
+  type:
+    number
+  required
+  min
+  max
+  placeholder
+
+
+fieldset:
+used to highlight a set of related input fields
+a legend tag is used to give a title to the fieldset
+
+select:
+<select>
+  <option selected value="option1">Option 1</option>
+  <option value="option2">Option 2</option>
+  <option value="option3">Option 3</option>
+  <option value="option4">Option 4</option>
+</select>
+  
+button:
+  <button type="button">Button Text</button>
+  <button type="submit">Submit the form</button>
+  <button type="reset">Clear inputs in the form</button>
+  
+  Note: buttons associated with a form will submit by default.
+
+
+**********************************************************************
+DIALOG
+**********************************************************************
+A <dialog> html element represents a modal or non-modal dialog box
+or other interactive element like an alert.
+
+Modal dialog prevents interaction with rest of the web page elements
+
+It can be part of a <form>
+
+Use .showModal() or .show() methods to open it in Javascript.
