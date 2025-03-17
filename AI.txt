@@ -1,0 +1,65 @@
+Resources:
+==========
+Prompting Guide by Google for Workspace:
+  https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf
+
+PAIR - People, AI Research - Google's site:
+  https://pair.withgoogle.com 
+
+Stanford University - Human Centered Artificial Intelligence
+  https://hai.stanford.edu/
+
+all things AI - tutorials, latest tools etc.
+  https://allthingsai.com/
+
+global trends:
+  https://www.dni.gov/index.php/gt2040-home
+
+Why generative AI matters
+  https://www.gao.gov/products/gao-23-106782
+
+AI Tools:
+=========
+Conversational AI tools:
+  Anthropic Claude
+  Gemini
+  Microsoft Copilot
+  ChatGPT
+
+Proudctivity & Writing Assistants:
+  Clockwise
+  Grammarly
+  Jasper
+  NotebookLM
+  Notion AI
+  AI by Zapier
+
+Code Generating Tools:
+  Android Studio Bot
+  Github Copilot
+  Replit AI
+  Tabnine
+  Jupyter AI
+
+Image & Media Generative AI Tools:
+  Adobe Firefly
+  Canva Magic Design
+  Dall-E
+  ElevenLabs
+    - can generate spoken audio from text in multiple languages
+  Google Ads
+  Midjourney
+  Runway
+    - generate videos, edit them etc based on text instructions
+
+AI tools that can assist in data analysis:
+  Gemini in Google Sheets
+  Tableau Pulse
+  Looker Studio
+  BigQuery Data insights
+
+Public data sources:
+  datasetsearch.research.google.com
+  kaggle
+  statista.com
+  dataful.in

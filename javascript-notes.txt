@@ -17,6 +17,14 @@ symbol
 
 Arrays
 ======
+Array() consturctor
+  creates an empty array
+  Accepts size of the array as a paramenter
+    const arr  = Array(5) 
+  fill()
+    fills the array with a given value
+    const arr = Array(5).fill("a") 
+
 find the length of an array using '.length'
 example: last_array_element = array[array.length - 1]
 
@@ -42,6 +50,9 @@ spread:
 <array>.map()
   map/transform elements in an array to new array with the transformed values
   const newArray = oldArray.map(oldItem => oldItem * 2);
+  parameters available to the callback function:
+    current element
+    index
 
 join()
   concatenate all elements of an array optionally with a separator
@@ -210,8 +221,14 @@ Switch:
   }
 
 
-Document Object Model (DOM)
-===========================
+Document Object Model (DOM):
+============================
+window object:
+  the global "window" object refers to the browser window/tab
+  onload
+    property that allows to define behaviour when the window has loaded the entire page including the stylesheets and scripts.
+
+
 document object:
 - access the HTML through the document object
 
@@ -310,6 +327,11 @@ Assign id to an element:
 Assign an aria-label to an element:
   <HTML Element>.ariaLabel = "Rest playlist"
 
+All HTML attributes can be accessed as a property of the HTML element:
+  <HTML Element>.id
+  <HTML Element>.type
+  <HTML Element>.onchange
+
 append a node or child element:
   <document or HTML element>.appendChild()
 
@@ -361,6 +383,19 @@ const { name, isDeveloper } = developerObj;
 
 // Get all the keys of an object in an array
   Object.keys(<object>)
+
+// Shorthand Representation
+const userId = 1;
+const firstName = "John";
+const loggedIn = true;
+
+const user = {
+  userId,
+  firstName,
+  loggedIn,
+};
+
+console.log(user); // { userId: 1, firstName: 'John', loggedIn: true }
 
 
 Math Functions
@@ -465,10 +500,6 @@ text.innerText = "You are in the town square. You see a sign that says \"Store\"
 template literals:
   console.log(`My name is ${name} .`)
 
-Number('number as string')
-  convert a number value as text to number
-  returns NaN if the input is not a number
-
 replace()
   syntax: replace(<char, str or regex>, <replace with>)
   example: "hello".replace(/l/g, '1')
@@ -498,6 +529,14 @@ String(<input>)
   - converts the input reliably to a string
   - null is converted to "null"
   - undefined is converted to "undefined"
+
+charCodeAt(<index>)
+  returns the character code of the character at the specified index
+
+fromCharCode()
+  converts a character code to string
+  String.fromCharCode(45)
+
 
 Audio:
 =====
@@ -595,11 +634,25 @@ JSON.parse()
   converts a JSON/Javascript object in string format back to JSON
 
 functions:
-  parseInt(<number string>)
-    converts a string to number
-    if not a number returns NaN
+  parseInt(<string>, <radix - optional>) // radix refers to base of a number system 
+    converts a string to number as per the given radix
+    if radix is not provided goes by initial characters present in the string
+      "0x" - hexadecimal
+      any other character radix is considered as decimal
+    it parses along the string and returns a number until it could do
+      parseInt("123abc") returns 123
+    if the first character is not a number then returns NaN
+      parseInt("abc") returns NaN
+
+  Number(<object>)
+    attempts to convert the object (in entirity) to a number
+    returns NaN if it can't
+      Number("123abc") returns NaN
+
+
   isNaN(<input string>)
     true if the input string evaluates to NaN
+
   alert(<message>)
     is a method on the window object
 
@@ -624,3 +677,30 @@ Set:
 ---
   a data structure that stores only unique values
   const newSet = new Set()
+
+functional programming:
+=======================
+modular and reusable code
+traditional syntax:
+  function() {
+
+  }
+arrow syntax:
+  const function = () => {}
+nested function:
+  a function can be defined inside another function.
+
+Currying:
+========
+the concept of returning a function within a function is called currying.
+
+
+Closure:
+========
+
+
+Miscellaneous:
+=============
+Variables prefixed with underscore:
+  In Javascript it is common practice to prefix an underscore to a parameter that is unused in the function.
+  
