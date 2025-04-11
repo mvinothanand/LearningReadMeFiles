@@ -18,6 +18,12 @@ global trends:
 Why generative AI matters
   https://www.gao.gov/products/gao-23-106782
 
+Analytics Vidhya:
+  https://www.analyticsvidhya.com/blog/2024/07/langchains-agent-framework/
+
+One Useful thing:
+  https://www.analyticsvidhya.com/blog/2024/07/langchains-agent-framework/
+
 AI Tools:
 =========
 Conversational AI tools:
@@ -63,3 +69,11 @@ Public data sources:
   kaggle
   statista.com
   dataful.in
+
+AI Agents:
+  Google Vertex AI
+    https://cloud.google.com/dialogflow/vertex/docs
+  Gems
+    https://blog.google/products/gemini/google-gems-tips/
+  Langchain:
+    https://www.analyticsvidhya.com/blog/2024/07/langchains-agent-framework/

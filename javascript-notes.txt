@@ -40,7 +40,7 @@ array.shift() - removes the 'first' element of the array and returns the element
 
 array.includes() - check if the array contains the input value and return true/false
 
-Array.from(<iterables like NodeList>)
+Array.from(<iterables like NodeList, HTMLCollection>)
   convert an iterable to array
 
 spread:
@@ -123,6 +123,11 @@ some()
   example:  
     const arr = ["A", "b", "C"];
     arr.some(letter => letter === letter.toUpperCase());
+
+every()
+  accepts a callback func to test every item of the array fits the validation
+  the callback should return a boolean value
+  returns true only if all items pass the validation
 
 
 reduce()
@@ -346,6 +351,11 @@ interaction with <dialog> element:
 parentElement
   refers the parentElement of an element
 
+children
+  refers to all the child elements of an element
+  returns a HTML collection
+    use Array.from to convert it into an array
+
 events:
   whenever an event is triggered an event object is created.
     type
@@ -397,6 +407,9 @@ const user = {
 
 console.log(user); // { userId: 1, firstName: 'John', loggedIn: true }
 
+hasOwnProperty(<property name>)
+  checks if the object has the property and returns true or false.
+
 
 Math Functions
 ==============
@@ -410,6 +423,8 @@ Math.pow(base, exponent)
     Math.pow(4, 0.5)
 Math.sqrt(<number>)
 
+.toFixed(x)
+  converts a number to a string while rounding it off to x places
 
 Regex
 =====
@@ -537,6 +552,18 @@ fromCharCode()
   converts a character code to string
   String.fromCharCode(45)
 
+substring(<start index>, <end index - including>)
+  use -ve start index to start from the end
+
+slice(<start index>, <end index - excluding>)
+  returns the sliced part of the original string
+  the original string remains unaltered
+  use -ve start index to start from the end
+  examples:
+    mylist.slice(0,2) // returns the first two items
+    mylist.slice(-2)  // returns the last two items
+
+NOTE: substr() is deprecated
 
 Audio:
 =====
@@ -620,12 +647,7 @@ The local storage can be viewed in:
   browser console -> application tab -> local storage -> domain
 
 
-this keyword:
-=============
-it refers to the current context
-in the below cases, it refers to the respective buttons
-  <button type="button" class="btn" onclick="editTask(this)">Edit</button>
-  <button type="button" class="btn" onclick="deleteTask(this)">Delete</button>
+
 
 JSON:
 JSON.stringify()
@@ -643,6 +665,8 @@ functions:
       parseInt("123abc") returns 123
     if the first character is not a number then returns NaN
       parseInt("abc") returns NaN
+  
+  parseFloat(<string>)
 
   Number(<object>)
     attempts to convert the object (in entirity) to a number
@@ -655,6 +679,7 @@ functions:
 
   alert(<message>)
     is a method on the window object
+
 
 Operators:
 =========
@@ -703,4 +728,49 @@ Miscellaneous:
 =============
 Variables prefixed with underscore:
   In Javascript it is common practice to prefix an underscore to a parameter that is unused in the function.
+
+
+OOP in Javascript
+=================
+class ClassName {
+  constructor() {
+    this.prop1 = "value"
+    this.prop2 = []
+  }
+
+  methodOne () {
+
+  }
+}
   
+this keyword:
+=============
+it refers to the current context
+in the below cases, it refers to the respective buttons
+  <button type="button" class="btn" onclick="editTask(this)">Edit</button>
+  <button type="button" class="btn" onclick="deleteTask(this)">Delete</button>
+if you want to bind the context to the class, use the "bind" method
+  for example, clearCart is part of a ShoppingCart object. To change the context from 
+    the button to the object, use bind
+    clearCartBtn.addEventListener("click", cart.clearCart.bind(cart))
+
+canvas API
+==========
+The Canvas API can be used to create graphics in games using JavaScript and the HTML canvas element.
+
+getContext
+  provides the context for rendering the graphics
+  const ctx = canvas.getContext("2d")
+
+width property
+  canvas.width = innerWidth; // represents the interior width of the browser
+
+height property
+  canvas.height = innerHeight; // represents the interior height of the browser
+
+fillStyle
+  ctx.fillStyle("#99c9ff")set the color of the canvas
+
+fillRect(x, y, width, height)
+  draw a rectangle in the canvas
+  ctx.fillRect(x, y, width, height)
