@@ -1,0 +1,3 @@
+https://www.electronjs.org/docs/latest/tutorial/tutorial-first-app
+
+Electron bundles node and chromium within the app.

@@ -1,0 +1,33 @@
+Virtual Environment
+-------------------
+Create a new virtual environment:
+  Install "virtualenv":
+    pip install virtualenv
+  Go the project directory
+    python3 -m venv <virtual env name>
+
+Activate virtual environment:
+  Go to the project directory
+  Run this command:
+    source <virtual env name>/bin/Activate
+
+Deactivate a virtual environment:
+  Run this command:
+    deactivate
+
+format of a requirements.txt file:
+  package_1==version
+  package_2==version
+
+Preparing a requirements.txt file:
+  run this command when the venv is activated in the project:
+    pip freeze > requirements.txt
+  the requirements.txt thus created shall be used to install the dependencies in another instance of the project elsewhere.
+
+Install dependent pip packages in new instance of a project:
+  pip install -r requirements.txt
+
+
+Packaging:
+----------
+Add a "__init__.py" in a folder to indicate that it is a package

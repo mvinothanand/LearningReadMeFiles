@@ -1,0 +1,45 @@
+Principles of component design:
+    https://react.dev/learn/reacting-to-input-with-state#how-declarative-ui-compares-to-imperative
+
+
+Packages:
+=========
+react 
+    - core React library
+react-dom
+    - DPM-specific methods that enables to use react with DOM
+
+
+JSX:
+===
+3 Rules:
+    https://react.dev/learn/writing-markup-with-jsx#the-rules-of-jsx
+Rule 1:
+    Return a single root element
+    To return multiple elements,
+        wrap them in a parent element
+        or wrap them in <></> tags called as Fragments
+Rule 2:
+    Close all the tags
+Rule 3:
+    camelCase for for HTML and SVG attributes
+        background-color should be backgroundColor
+        class should be className
+
+Javascript code in JSX:
+    enclose in {}
+    the JS expression should evaluate to a single value
+    They could be:
+        An object notation to access a value
+        template literal
+        a function call that returns a single output
+        ternary operators
+
+
+
+Component:
+==========
+    A reusable building block of the UI
+    In react, they are functions that return UI elements
+    Name of the component function should be title case (Eg: Header)
+    They can be called like a HTML element => <Header/>

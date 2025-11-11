@@ -1,0 +1,6 @@
+
+# AstroJS
+
+## create a new project with npm
+
+`npm create astro@latest`

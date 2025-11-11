@@ -98,6 +98,7 @@ forEach()
     - the current element of the array that is in iteration
     - index of the element
     - the array on which forEach was called upon
+  !! - DONT USE ASYNC functions inside forEach loop
 
 filter()
   retain only the elements that match a logic
@@ -774,3 +775,12 @@ fillStyle
 fillRect(x, y, width, height)
   draw a rectangle in the canvas
   ctx.fillRect(x, y, width, height)
+
+
+Animation
+=========
+requestAnimationFrame()
+  - request animation ???
+clearRect(<starting point in x, starting point in y, end x, end y>)
+  - clear content in the canvas
+
