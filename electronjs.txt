@@ -1,3 +1,123 @@
 https://www.electronjs.org/docs/latest/tutorial/tutorial-first-app
 
 Electron bundles node and chromium within the app.
+
+Pre-requisites for development:
+-------------------------------
+Install
+	Node
+	npm
+(Note: This installation is only for development. The end user need not install Node in their systems.)
+
+***DO NOT USE WSL FOR DEVELOPMENT*** 
+	- Electron documentation cautions about this. Refer documentation for details.
+	
+
+Setting up an Electron project:
+------------------------------
+	- Create a project folder
+	- Initialize an npm project
+		- npm init
+		- entry point should be "main.js"
+		- author, description and license are needed during packaging
+	- Install electron as dev dependency.
+		- npm install electron --save-dev
+		- NOTE: During packaging for production release, the required binary is included.
+			- This is only for development
+	- start command:
+		- "electron ."
+		- set this up in the package.json file under the "scripts" section.
+			- "start" : "electron ."
+			
+	
+main.js:
+--------
+- This is the entry point for any electron application.
+- Controls the main process of the application which runs in the Node.js environment.
+	- Controls the app's lifecycle
+	- displays native interfaces (as per the OS)
+	- performs privileged operations
+	- manages the renderer processes.
+
+Renderer:
+---------
+- Each web page displayed will run as a separate renderer process.
+- the renderer process will have access to JavaScript API and tooling typically available in a front-end web development.
+- doesn't have access to the node.js environment by default for security reasons.
+- a special script "preload.js" is available through which certain privileged Node.js and Electron APIs.
+
+
+preload.js:
+-----------
+- runs in a context that have access to both HTML DOM and a select set of Node.js and Electron APIs.
+- preload scripts are injected before a web page loads in the renderer.
+- global objects can be defined using the contextBridge API.	
+- enables inter-process communication (IPC) between the main and renderer.
+	
+
+main.js => Main process
+  |
+ preload.js
+  |
+  -----------------------
+  |			|			|
+  |     	|   		|
+  renderer  renderer    renderer
+	
+	
+Electron Modules:
+-----------------
+- Can be loaded using the CommonJs module syntax:
+	- example: const { app, BrowserWindow } = require('electron')
+	
+- BrowserWindow:
+	- Here is where web pages can be loaded (remote or a local html file)
+	- example:
+		const createWindow = () => {
+		  const win = new BrowserWindow({
+			width: 800,
+			height: 600
+		  })
+
+		  win.loadFile('index.html')
+		}	
+	- BrowserWindow can be loaded only after the app is 'ready' event is emitted.
+
+- app:
+	- controls application's event life cycle
+	- app.whenReady().then(...)
+		- used to check if the app is 'ready' event is emitted.
+	- app.on('window-all-closed', () => {...})
+		- emitted when all windows are closed.
+	
+- contextBridge:
+	- bridge between main and rendered process
+	- use this in preload.js to expose variables, functions to renderer
+	
+- ipcMain:
+	- to configure a listener on the main process
+	- example: 
+		ipcMain.handle('ping', () => pong)
+	- configure the listener before creating the BrowserWindow.
+	
+
+- ipcRenderer:
+	- to send a message from the renderer to main
+	- expose the required ipcRenderer function in the preload.js wrapped in a function.
+	- example:
+		contextBridge.exposeInMainWorld('versions', {
+			'ping': () => ipcRenderer.invoke('ping') // 
+		}
+		)	
+	- Invoking the ipcRenderer in renderer.js once exposed in preload.js
+		const func = async () => {
+			const response = await window.versions.ping() // why window.??
+			console.log(response)
+		}
+		
+		func()
+
+
+Process Variables:
+- process.platform
+	- win32 (windows), darwin(macOs), linux(Linux)
